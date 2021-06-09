@@ -6,19 +6,26 @@ var userClickedPattern = [];
 function nextSequence(){
     var randomNumber = Math.floor(Math.random()*4);
     var randomChosenColour = buttonColours[randomNumber];
-    var audio = new Audio("sounds/" + randomChosenColour + ".mp3");
+    
+    gamePattern.push(randomChosenColour);
 
     $("#"+randomChosenColour).fadeOut(100).fadeIn(100);
 
-    gamePattern.push(randomChosenColour);
-    audio.play();
+    playSound(randomChosenColour);
 }
 
 $( ".btn" ).click(function(){
     var userChosenColour = this.id;
+
     userClickedPattern.push(userChosenColour);
-    console.log(userClickedPattern);
+
+    playSound(userChosenColour);
 })
+
+function playSound(name){
+    var audio = new Audio("sounds/" + name + ".mp3");
+    audio.play();
+}
 
 
 
