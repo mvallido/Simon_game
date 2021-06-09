@@ -49,8 +49,23 @@ function checkAnswer(currentLevel){
             setTimeout(nextSequence,1000);
         } 
     }else{
-        console.log("false");
+        startOver()
+        var gameOver = new Audio("sounds/wrong.mp3");
+        gameOver.play();
+
+        $("body").addClass("game-over");
+        setTimeout(function(){
+            $("body").removeClass("game-over");
+       },300);
+       $("h1").text("Game Over, Press Any Key to Restart");
+       
     }
+}
+
+function startOver(){
+    level = 0;
+    gamePattern.length = 0;
+    gameStarted = false;
 }
 
 $(".btn").click(function(){
